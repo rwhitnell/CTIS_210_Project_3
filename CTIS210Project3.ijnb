@@ -1,0 +1,239 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "language_info": {
+      "name": "java"
+    }
+  },
+  "cells": [
+    {
+      "id": "3ef66de0-6798-4564-967a-6d3e22b7cc86",
+      "cell_type": "code",
+      "source": "// Magic code: Do not change this code\nimport java.awt.Color;\nimport java.util.Random;\n",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "8c6b5409-abe3-4fa6-82b9-3c39c73a1eef",
+      "cell_type": "markdown",
+      "source": "#### Initial setup task\n\nSame as before. Enter **your name** and **your G number**. ",
+      "metadata": {
+        "language": "markdown",
+        "id": "8c6b5409-abe3-4fa6-82b9-3c39c73a1eef"
+      }
+    },
+    {
+      "id": "7e6c225d-568f-48a3-a960-5dd7bda77f41",
+      "cell_type": "code",
+      "source": "String fullName = \"\";\nString gNumber = \"\";",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "b9fe78b1-de4c-4908-b240-cc0516984943",
+      "cell_type": "markdown",
+      "source": "#### Method examination task\n\nThe next cell contains the `generateColor` method. Examine that method and then edit this cell to answer the questions. \n\n1. Identify the following based on the method signature.\n    * visibility modifier: \n    * return type: \n    * method identifier: \n    * parameter list: \n2. `gNumber` is a `String` object and we can ask it to run `String` methods. We use one of those methods in the `generateColor` method.\n    * What is the identifier of that `String` method?\n    * How many arguments does it have?\n3. The `generateColor` method also uses a method of the `Integer` class.\n    * What is the identifier of that method? \n    * How many arguments does it have?\n\nNow run the next *three* code cells to display a color based on your G number.",
+      "metadata": {
+        "language": "markdown",
+        "id": "b9fe78b1-de4c-4908-b240-cc0516984943"
+      }
+    },
+    {
+      "id": "3368e9a3-bffe-41aa-b5e0-5d7b4a6ca878",
+      "cell_type": "code",
+      "source": "// Not magic code because you've seen examples like this code in the activities\n// But don't change it unless directed to do so\n\npublic Color generateColor(String gNumber) {\n    String redChars = gNumber.substring(3, 5);\n    String greenChars = gNumber.substring(5, 7);\n    String blueChars = gNumber.substring(7, 9);\n    \n    int red = Integer.parseInt(redChars);\n    int green = Integer.parseInt(greenChars);\n    int blue = Integer.parseInt(blueChars);\n\n    red = red * 2 + 37;\n    green = green * 2 + 46;\n    blue = blue * 2 + 12;\n\n    Color colorResult = new Color(red, green, blue);\n    return colorResult;\n}",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "d3876702-ae2c-4aaf-90b9-8007911cc6c6",
+      "cell_type": "code",
+      "source": "Color myColor = generateColor(gNumber);\nSystem.out.println(\"Color generated from gNumber: \" + myColor);",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "e7714ce7-5f7c-4cb4-8be4-546f261170aa",
+      "cell_type": "code",
+      "source": "// Magic code to display a small square with a specified color. Do not change this code.\n\nimport javax.swing.JFrame;\nimport javax.swing.JPanel;\nimport javax.swing.JLabel;\nimport javax.swing.SwingConstants;\nimport java.awt.Dimension;\nimport java.awt.Font;\n\nJFrame frame = new JFrame(\"Color Display\");\nJPanel panel = new JPanel();\npanel.setPreferredSize(new Dimension(625, 225));\nJLabel colorLabel = new JLabel(\"\");\ncolorLabel.setPreferredSize(new Dimension(200, 200));\ncolorLabel.setOpaque(true);\ncolorLabel.setBackground(myColor);\npanel.add(colorLabel);\nframe.add(panel);\nframe.pack();\nframe.setVisible(true);",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "e4a9d162-016c-49b9-9749-b8598ccaeee7",
+      "cell_type": "markdown",
+      "source": "#### Color and text display task\n\nIn the magic code, one new kind of object we used has the type `JLabel`. A `JLabel` object can display a line of text in different fonts and sizes, and we can change both the color of the text and the background color by asking the object to invoke specific methods.\n\nHere are the lines that that use `JLabel` methods change the properties of the object that has the identifier `colorLabel`.\n\n```java\ncolorLabel.setPreferredSize(new Dimension(200, 200));\ncolorLabel.setOpaque(true);\ncolorLabel.setBackground(myColor);\n```\n\nEdit the following descriptive cell to answer questions about this code\n",
+      "metadata": {
+        "language": "markdown",
+        "id": "e4a9d162-016c-49b9-9749-b8598ccaeee7"
+      }
+    },
+    {
+      "id": "ab407da8-30ee-4221-9113-f5ff47ff151b",
+      "cell_type": "markdown",
+      "source": "1. What are the identifiers for three methods that we ask the `colorLabel` object to invoke?\n2. In the first line, if you changed `200, 200` to `300, 300`, what do you think will happen?\n3. What does \"opaque\" mean? Based on that, what is the purpose of the second line?",
+      "metadata": {
+        "language": "markdown",
+        "id": "ab407da8-30ee-4221-9113-f5ff47ff151b"
+      }
+    },
+    {
+      "id": "2905c731-b8d6-411a-ab7b-a8a1cbc615cf",
+      "cell_type": "markdown",
+      "source": "#### Color changing task\n\nIn the following code cell,\n* Complete the first line so that it assigns a different G number to `nextGNumber`\n* Complete the second line so that it invokes the `generateColor` method with the argument `nextGNumber`\n* Run the cell.\n\nIf everything works, the displayed color should have changed. If that doesn't happen, first click on \"Clear All Outputs\" and \"Restart\" at the top of this window and select Yes in the dialog at the lower right. Then, try running each cell again from the beginning of the notebook.",
+      "metadata": {
+        "language": "markdown",
+        "id": "2905c731-b8d6-411a-ab7b-a8a1cbc615cf"
+      }
+    },
+    {
+      "id": "8b3a986a-8d14-4294-b782-45e5fbd3b917",
+      "cell_type": "code",
+      "source": "String nextGNumber = \"\";\nColor nextColor = \nSystem.out.println(\"Color generated from nextGNumber: \" + nextColor);\ncolorLabel.setBackground(nextColor);",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "00f2928c-7548-491f-945c-b825feb4f593",
+      "cell_type": "markdown",
+      "source": "#### Text display task\n\nEvery `JLabel` object has a `setText` method for changing the text. The signature for that method is\n```java\npublic void setText(String text)\n```\n\nIdentify the following for the `setText` method.\n* Visibility modifier\n* Return type\n* Method identifier\n* Parameter list\n",
+      "metadata": {
+        "language": "markdown",
+        "id": "00f2928c-7548-491f-945c-b825feb4f593"
+      }
+    },
+    {
+      "id": "776f76d0-926f-4455-9ee9-ce2bc4425a83",
+      "cell_type": "markdown",
+      "source": "When a method has the return type `void`, we expect the method to do something, but it won't return any information to whoever invoked it. So we expect the `setText` method to change the text in the `JLabel` object, but not tell us anything else.\n\nRun the following code cell to see the effect of the `setText` method on the `colorLabel` object. (And we'll see how to modify the properties of this text later.)",
+      "metadata": {
+        "language": "markdown",
+        "id": "776f76d0-926f-4455-9ee9-ce2bc4425a83"
+      }
+    },
+    {
+      "id": "37b3ae16-af30-4872-be64-580f2b9fc3e0",
+      "cell_type": "code",
+      "source": "colorLabel.setText(fullName);",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "bffc4806-84ad-4baa-a4b1-e26d8a2259db",
+      "cell_type": "markdown",
+      "source": "#### Adding a second label with a second color task\n\nThe following code cell has comments that describe what you should do to generate a new label with a new color. There are lines  of magic code at the beginning and end that you should not change. And don't add any code after those lines. Run the cell to see the effect of your changes. Remember that Clear All Outputs/Restart to force everything to start over can sometimes fix problems.\n\nWhen everything has run correctly, you should have a display that shows two different colors and two names.",
+      "metadata": {
+        "language": "markdown",
+        "id": "bffc4806-84ad-4baa-a4b1-e26d8a2259db"
+      }
+    },
+    {
+      "id": "f361c29b-fd3a-47be-ae51-e8334384bef3",
+      "cell_type": "code",
+      "source": "// Magic code: Do not change the following line\n\nJLabel secondColorLabel = new JLabel(\"\");\n\n// Your work starts below this line.\n// Add one line that declares a new String variable for a different G number. \n// Use any identifier you want, and assign it a G number value\n// different than any of those above.\n\n\n\n// Add one line that declares a new Color variable with any identifier you want. \n// Assign it the result of using the method generateColor\n// with the G number variable you just defined as an argument.\n\n\n\n// Following the example in previous cells, add lines that do the following.\n// 1. Change the size of the secondColorLabel object to any size you choose.\n// 2. Make the object opaque\n// 3. Sets the color to the one you just defined.\n\n\n\n// Run the cells from the beginning after this step to see the results. Then, continue\n// to the next step in this cell.\n\n\n// Declare a new String variable with any identifier you want. Assign it a value of a different full name.\n\n\n// Add one line that sets the text of the secondColorLabel to the new full name variable you just defined.\n\n\n// magic code to display the new color label. Do not change this code.\npanel.add(secondColorLabel);\nframe.pack();\n\n",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "3f4228c0-6cb8-4bf7-93a0-2be05bb4fa50",
+      "cell_type": "markdown",
+      "source": "#### Text alignment task\n\nWe'll now practice taking a description of a method and applying it in our code. In this case, we want to align the text in the `JLabel` object in different ways.\n\n`JLabel` has two methods that can do that: `setHorizontalAlignment` and `setVerticalAlignment`. Those methods each take one argument.\n\nFor `setHorizontalAlignment`, that argument must be one of the following.\n\n```java\nSwingConstants.LEFT\nSwingConstants.CENTER\nSwingConstants.RIGHT\n```\n\nFor `setVerticalAlignment`, that argument must be one of the following.\n\n```java\nSwingConstants.TOP\nSwingConstants.CENTER\nSwingConstants.BOTTOM\n```\n\nIn the next code cell, add four lines of code that invoke these methods to align the text in each `JLabel` object in a different way.",
+      "metadata": {
+        "language": "markdown",
+        "id": "3f4228c0-6cb8-4bf7-93a0-2be05bb4fa50"
+      }
+    },
+    {
+      "id": "0c603292-4cb2-44dc-a014-735b5062ea2c",
+      "cell_type": "code",
+      "source": "// Add text alignment code here\n\n",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "9b113cea-2b3b-4808-a9be-14ea09a36c07",
+      "cell_type": "markdown",
+      "source": "#### Font changing task\n\nThe default font in Java graphics is boring. You can change it to essentially any font on your computer. If you have a Mac, the FontBook app will show you all those fonts. On Windows, you can find them in the Settings app.\n\nA font has three components.\n\n* The family, like \"Arial\", \"Times New Roman\", or \"Helvetica\"\n* The weight/posture: bold, italic or both.\n* The size, just like the one when you change the font size in Word or Google Docs.\n\nTo create a new `Font` object, we specify all three of these components. For example, \n\n```java\nFont labelFont = new Font(\"Arial\", Font.BOLD, 16);\n```\n\ncreates a new `Font` object with the identifier `labelFont`, family \"Arial\" in bold, and with size 16 points.\n\nIf we want to have an italic font, we would use `Font.ITALIC` for the second argument. If we want to have both bold and italic, we would use `Font.BOLD | Font.ITALIC`. If we just want a plain font, we would use `Font.PLAIN`\n\nThen, we can ask the `colorLabel` object to use that font to display its text by invoking the `setFont` behavior. That would look like\n\n```java\ncolorLabel.setFont(labelFont);\n```\n\nHere's your task for the code cell below.\n\n1. Add the two lines of code in this cell to the code cell below. Run everything to see that the font has changed.\n2. Define a second `Font` object with any choice of family, weight/posture, and size, and apply that to your second label. ",
+      "metadata": {
+        "language": "markdown",
+        "id": "9b113cea-2b3b-4808-a9be-14ea09a36c07"
+      }
+    },
+    {
+      "id": "c6ae91c9-9cbe-41a6-9a77-24401b5fa46d",
+      "cell_type": "code",
+      "source": "// The font changing code goes here\n\n",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "d364649e-8ad8-4b61-9542-dd79a76ac399",
+      "cell_type": "markdown",
+      "source": "#### Final required task\n\nIn the code cell below, add all the code (based on what you've already done in this project) to display a third square with any text and any size you want. Change the color of both the background and the text color to any value you want. Change the text font to one of your choice. The identifier of this `JLabel` object should be `thirdLabel`. ",
+      "metadata": {
+        "language": "markdown",
+        "id": "d364649e-8ad8-4b61-9542-dd79a76ac399"
+      }
+    },
+    {
+      "id": "b0957b7e-2ed7-4ea0-a2a9-53b89c72eb32",
+      "cell_type": "code",
+      "source": "// Add code for the final required task below this line\n\n\n\n// magic code to display the new color label. Do not change this code.\n\npanel.add(thirdLabel);\nframe.pack();",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "id": "ebd74446-49ba-40d5-af73-b96416b543f7",
+      "cell_type": "markdown",
+      "source": "#### Optional challenge: Adding an image to a `JLabel` object\n\nYou do not need to complete challenge exercises to get full credit for the project. I recommend these exercises for anyone who wants to extend and practice their programming skills further. These exercises will have less detailed instructions, but enough so that you should be able to work through them if you have a good understanding of what you've done already. Do not attempt challenge exercises until the rest of the project is done. And you can certainly ask questions about these exercises!\n\nSo here's the task description.\n\nThe labels we're using can display images as well as text. Java can display JPEG, PNG, or GIF images (including animated gifs). The image will be in a file in your repository and it must have the extension .jpg, .png, or .gif\n\nOnce you have an image in your repository, you will create an `ImageIcon` object that will be the background for your label instead of the color. \n\nHere's the plan that you should follow. The steps up to the extra challenge require only three lines of code, but getting those three lines exactly right with a correct image file in the correct location is the challenge.\n\n1. Drag an image file to the repository. The image should be pretty small, probably no more than 200x200 pixels.\n2. Tell Java we plan to use the `ImageIcon` functionality by importing javax.swing.ImageIcon. See the magic code for how to do an import.\n3. In the next code cell, create an `ImageIcon` object using a line like\n\n    ```java\n    ImageIcon icon = new ImageIcon(\"/Users/rwhitnel/Documents/GitHub/CTIS210Fall26/projects/CTIS_210_Project_3/avatar.png\");\n    ```\n\n    where the argument is the *full path* to your image file. You may not be familiar with getting that, so ask me if you're not sure. There are a lot of ways to do this wrong, but once it's working, it gives you a lot of power.\n4. Attach the `icon` object to your label by invoking the `setIcon` method.\n5. Extra special challenge: If your image isn't the size you want, research how to modify the size of an image and then follow the instructions above to complete this exercise.",
+      "metadata": {
+        "language": "markdown",
+        "id": "ebd74446-49ba-40d5-af73-b96416b543f7"
+      }
+    },
+    {
+      "id": "f00b6af5-c386-4329-9a36-a3d0e37d50b0",
+      "cell_type": "code",
+      "source": "// image display code goes here\n\n",
+      "metadata": {
+        "language": "java"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
